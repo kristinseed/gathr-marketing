@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gathr — Your reunion plans itself</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --amber:        #BA7517;
+      --amber-hover:  #9E6312;
+      --warm-white:   #FDFCFA;
+      --surface:      #F5F3EE;
+      --surface-dark: #EDE9E0;
+      --text:         #2C2C2A;
+      --muted:        #5F5E5A;
+      --border:       #E8E4DC;
+      --border-strong:#C8C4BC;
+      --serif:        Georgia, 'Times New Roman', serif;
+      --sans:         system-ui, -apple-system, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      font-weight: 400;
+      color: var(--text);
+      background: var(--warm-white);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    h1, h2 {
+      font-family: var(--serif);
+      font-weight: 400;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--warm-white);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      height: 56px;
+    }
+
+    .nav-wordmark {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+
+    .nav-signin {
+      font-family: var(--sans);
+      font-size: 0.875rem;
+      color: var(--muted);
+      text-decoration: none;
+    }
+    .nav-signin:hover { color: var(--text); }
+
+    /* ── Hero ── */
+    .hero {
+      background: var(--surface);
+      padding: 80px 40px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2rem;
+      color: var(--text);
+      margin-bottom: 20px;
+      letter-spacing: -0.01em;
+    }
+
+    .hero-sub {
+      max-width: 560px;
+      margin: 0 auto 36px;
+      color: var(--muted);
+      font-size: 1.0625rem;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--amber);
+      color: #fff;
+      font-family: var(--sans);
+      font-weight: 500;
+      font-size: 0.9375rem;
+      padding: 12px 28px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .btn-primary:hover { background: var(--amber-hover); }
+
+    .hero-secondary {
+      margin-top: 16px;
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+    .hero-secondary a {
+      color: var(--amber);
+      text-decoration: none;
+    }
+    .hero-secondary a:hover { text-decoration: underline; }
+
+    /* ── Pain points ── */
+    .pain {
+      padding: 56px 40px;
+      background: var(--warm-white);
+    }
+
+    .pain-row {
+      display: flex;
+      gap: 40px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .pain-item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .pain-icon {
+      font-size: 1.5rem;
+      line-height: 1;
+    }
+
+    .pain-text {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ── How it works ── */
+    .how {
+      padding: 72px 40px;
+      background: var(--warm-white);
+    }
+
+    .how h2 {
+      font-size: 1.5rem;
+      text-align: center;
+      margin-bottom: 40px;
+      color: var(--text);
+    }
+
+    .how-cards {
+      display: flex;
+      gap: 24px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .how-card {
+      flex: 1;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 24px;
+    }
+
+    .how-step {
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--amber);
+      margin-bottom: 8px;
+      letter-spacing: 0.02em;
+    }
+
+    .how-title {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .how-desc {
+      font-size: 0.875rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ── Who it's for ── */
+    .who {
+      padding: 72px 40px;
+      background: var(--surface);
+    }
+
+    .who h2 {
+      font-size: 1.5rem;
+      text-align: center;
+      margin-bottom: 40px;
+      color: var(--text);
+    }
+
+    .who-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .who-card {
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.9rem;
+      color: var(--text);
+      transition: border-color 0.15s;
+    }
+    .who-card:hover { border-color: var(--border-strong); }
+
+    .who-icon { font-size: 1.25rem; }
+
+    /* ── Two columns ── */
+    .compare {
+      padding: 72px 40px;
+      background: var(--warm-white);
+    }
+
+    .compare h2 {
+      font-size: 1.5rem;
+      text-align: center;
+      margin-bottom: 40px;
+      color: var(--text);
+    }
+
+    .compare-cols {
+      display: flex;
+      gap: 24px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .compare-col {
+      flex: 1;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 24px;
+    }
+
+    .compare-col.organizer {
+      border-left: 3px solid var(--amber);
+    }
+
+    .compare-col-heading {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+
+    .compare-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .compare-list li {
+      font-size: 0.875rem;
+      color: var(--muted);
+      padding-left: 16px;
+      position: relative;
+      line-height: 1.5;
+    }
+
+    .compare-list li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: var(--muted);
+    }
+
+    /* ── Request form ── */
+    .request {
+      padding: 72px 40px;
+      background: var(--surface);
+    }
+
+    .request h2 {
+      font-size: 1.5rem;
+      text-align: center;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    .request-sub {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9375rem;
+      margin-bottom: 40px;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .form-wrap {
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .field {
+      margin-bottom: 20px;
+    }
+
+    .field label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      font-family: var(--sans);
+      font-size: 0.9375rem;
+      font-weight: 400;
+      color: var(--text);
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 10px 12px;
+      outline: none;
+      transition: border-color 0.15s;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    .field select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235F5E5A' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      padding-right: 36px;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      border-color: var(--amber);
+    }
+
+    .field textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .field-optional {
+      font-weight: 400;
+      color: var(--muted);
+      font-size: 0.8125rem;
+      margin-left: 4px;
+    }
+
+    #submit-btn {
+      width: 100%;
+      background: var(--amber);
+      color: #fff;
+      font-family: var(--sans);
+      font-weight: 500;
+      font-size: 0.9375rem;
+      padding: 13px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.15s;
+      margin-top: 4px;
+    }
+    #submit-btn:hover:not(:disabled) { background: var(--amber-hover); }
+    #submit-btn:disabled { opacity: 0.65; cursor: not-allowed; }
+
+    .form-note {
+      text-align: center;
+      font-size: 0.8125rem;
+      color: var(--muted);
+      margin-top: 12px;
+    }
+
+    .form-error {
+      display: none;
+      color: #b91c1c;
+      font-size: 0.875rem;
+      margin-top: 12px;
+      text-align: center;
+    }
+
+    .form-error a { color: #b91c1c; }
+
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 48px 0;
+      font-size: 1.0625rem;
+      color: var(--text);
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--surface-dark);
+      padding: 28px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      font-size: 0.875rem;
+      color: var(--muted);
+      flex-wrap: wrap;
+    }
+
+    footer a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+    footer a:hover { color: var(--text); }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .hero { padding: 60px 20px; }
+      .pain { padding: 48px 20px; }
+      .pain-row { flex-direction: column; gap: 28px; }
+      .how { padding: 56px 20px; }
+      .how-cards { flex-direction: column; }
+      .who { padding: 56px 20px; }
+      .who-grid { grid-template-columns: 1fr 1fr; }
+      .compare { padding: 56px 20px; }
+      .compare-cols { flex-direction: column; }
+      .request { padding: 56px 20px; }
+      footer { padding: 24px 20px; gap: 16px; }
+    }
+
+    @media (max-width: 480px) {
+      .who-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <a href="/" class="nav-wordmark">Gathr</a>
+    <a href="https://getgathr.co/login" class="nav-signin">Sign in</a>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1>Your reunion plans itself.</h1>
+    <p class="hero-sub">Gathr guides you from first invite to final headcount — so you spend less time managing a spreadsheet and more time looking forward to the event.</p>
+    <button class="btn-primary" onclick="document.getElementById('request').scrollIntoView({ behavior: 'smooth' })">Get started — it's free</button>
+    <p class="hero-secondary">Already have an account? <a href="https://getgathr.co/login">Sign in →</a></p>
+  </section>
+
+  <!-- Pain points -->
+  <section class="pain">
+    <div class="pain-row">
+      <div class="pain-item">
+        <div class="pain-icon">📋</div>
+        <p class="pain-text">Your contact list is spread across three apps.</p>
+      </div>
+      <div class="pain-item">
+        <div class="pain-icon">📬</div>
+        <p class="pain-text">People say "I'll let you know" and vanish.</p>
+      </div>
+      <div class="pain-item">
+        <div class="pain-icon">🤷</div>
+        <p class="pain-text">You have no idea where things actually stand.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="how">
+    <h2>Set up in minutes. Run the whole thing from one place.</h2>
+    <div class="how-cards">
+      <div class="how-card">
+        <div class="how-step">1</div>
+        <div class="how-title">Bring your people</div>
+        <p class="how-desc">Paste your contact list or upload a CSV. Gathr creates your member list instantly.</p>
+      </div>
+      <div class="how-card">
+        <div class="how-step">2</div>
+        <div class="how-title">Gathr keeps track</div>
+        <p class="how-desc">RSVPs, reminders, headcount — who's in and who's still deciding. All in one place.</p>
+      </div>
+      <div class="how-card">
+        <div class="how-step">3</div>
+        <div class="how-title">Show up and celebrate</div>
+        <p class="how-desc">Your guests arrive informed. You arrive relaxed. The software did the work.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who it's for -->
+  <section class="who">
+    <h2>Built for the people who volunteer to make it happen.</h2>
+    <div class="who-grid">
+      <div class="who-card"><span class="who-icon">🏫</span> High school reunions</div>
+      <div class="who-card"><span class="who-icon">🎓</span> College &amp; university</div>
+      <div class="who-card"><span class="who-icon">🔱</span> Fraternities &amp; sororities</div>
+      <div class="who-card"><span class="who-icon">🌿</span> Civic organizations</div>
+      <div class="who-card"><span class="who-icon">👨‍👩‍👧</span> Family reunions</div>
+      <div class="who-card"><span class="who-icon">✦</span> Other gatherings</div>
+    </div>
+  </section>
+
+  <!-- Organizer vs attendee -->
+  <section class="compare">
+    <h2>Good for the person running it. Easy for everyone else.</h2>
+    <div class="compare-cols">
+      <div class="compare-col organizer">
+        <div class="compare-col-heading">You stay in control.</div>
+        <ul class="compare-list">
+          <li>Import your existing contact list in seconds</li>
+          <li>One dashboard shows you exactly where things stand</li>
+          <li>Gathr tells you what needs attention and when</li>
+          <li>Members update their own RSVPs — you don't chase anyone</li>
+        </ul>
+      </div>
+      <div class="compare-col">
+        <div class="compare-col-heading">They stay in the loop.</div>
+        <ul class="compare-list">
+          <li>One-click RSVP from any device</li>
+          <li>Easy to change their mind — no awkward calls</li>
+          <li>Event details always in one place</li>
+          <li>After it's over, a shared space for photos and memories</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Request form -->
+  <section class="request" id="request">
+    <h2>Ready to get started?</h2>
+    <p class="request-sub">Tell us about your reunion and we'll get you set up — usually within one business day.</p>
+
+    <div class="form-wrap">
+      <div id="form-fields">
+        <div class="field">
+          <label for="f-name">Your name</label>
+          <input type="text" id="f-name" placeholder="Sarah Johnson" autocomplete="name" />
+        </div>
+        <div class="field">
+          <label for="f-email">Your email</label>
+          <input type="email" id="f-email" placeholder="sarah@email.com" autocomplete="email" />
+        </div>
+        <div class="field">
+          <label for="f-type">Type of reunion</label>
+          <select id="f-type">
+            <option value="" disabled selected>Choose one</option>
+            <option value="High school">High school</option>
+            <option value="College/university">College/university</option>
+            <option value="Fraternity">Fraternity</option>
+            <option value="Sorority">Sorority</option>
+            <option value="Civic organization">Civic organization</option>
+            <option value="Family reunion">Family reunion</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-org">Organization name</label>
+          <input type="text" id="f-org" placeholder="e.g. Lawrenceville High School or The Kim Family" />
+        </div>
+        <div class="field">
+          <label for="f-event">Event you're planning <span class="field-optional">optional</span></label>
+          <input type="text" id="f-event" placeholder="e.g. Class of 1986 40-year reunion" />
+        </div>
+        <div class="field">
+          <label for="f-notes">Anything else? <span class="field-optional">optional</span></label>
+          <textarea id="f-notes" placeholder="Optional — max 300 chars" maxlength="300"></textarea>
+        </div>
+
+        <button id="submit-btn" onclick="handleSubmit()">Request access</button>
+        <p class="form-note">We'll email you within one business day. No credit card required.</p>
+        <p class="form-error" id="form-error">
+          Something went wrong — email us directly at <a href="mailto:hello@getgathr.co">hello@getgathr.co</a>
+        </p>
+      </div>
+
+      <div class="form-success" id="form-success">
+        You're on the list. Check your inbox — we'll be in touch soon.
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <span>© 2026 Gathr</span>
+    <a href="mailto:hello@getgathr.co">hello@getgathr.co</a>
+    <span><a href="#">Privacy</a> · <a href="#">Terms</a></span>
+  </footer>
+
+  <script>
+    function validateEmail(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+    }
+
+    async function handleSubmit() {
+      const name  = document.getElementById('f-name').value.trim();
+      const email = document.getElementById('f-email').value.trim();
+      const type  = document.getElementById('f-type').value;
+      const org   = document.getElementById('f-org').value.trim();
+      const event = document.getElementById('f-event').value.trim();
+      const notes = document.getElementById('f-notes').value.trim();
+      const btn   = document.getElementById('submit-btn');
+      const errEl = document.getElementById('form-error');
+
+      errEl.style.display = 'none';
+
+      if (!name) { alert('Please enter your name.'); return; }
+      if (!email || !validateEmail(email)) { alert('Please enter a valid email address.'); return; }
+      if (!type) { alert('Please select a reunion type.'); return; }
+      if (!org) { alert('Please enter your organization name.'); return; }
+
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+
+      try {
+        const res = await fetch('/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, type, org, event, notes })
+        });
+
+        if (!res.ok) throw new Error('Non-2xx response');
+
+        document.getElementById('form-fields').style.display = 'none';
+        document.getElementById('form-success').style.display = 'block';
+      } catch (e) {
+        btn.disabled = false;
+        btn.textContent = 'Request access';
+        errEl.style.display = 'block';
+      }
+    }
+  </script>
+
+</body>
+</html>
