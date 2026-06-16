@@ -22,7 +22,7 @@ export async function onRequestPost({ request, env }) {
   const text = [
     `Name: ${name}`,
     `Email: ${email}`,
-    `Reunion type: ${type}`,
+    `Gathering type: ${type}`,
     `Org name: ${org}`,
     `Event: ${event || 'not provided'}`,
     `Notes: ${notes || 'none'}`,
