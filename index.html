@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gathr — Your reunion plans itself</title>
+  <title>Gathr — Your gathering plans itself</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -469,7 +469,7 @@
 
   <!-- Hero -->
   <section class="hero">
-    <h1>Your reunion plans itself.</h1>
+    <h1>Your gathering plans itself.</h1>
     <p class="hero-sub">Gathr guides you from first invite to final headcount — so you spend less time managing a spreadsheet and more time looking forward to the event.</p>
     <button class="btn-primary" onclick="document.getElementById('request').scrollIntoView({ behavior: 'smooth' })">Get started — it's free</button>
     <p class="hero-secondary">Already have an account? <a href="https://getgathr.co/login">Sign in →</a></p>
@@ -519,11 +519,11 @@
   <section class="who">
     <h2>Built for the people who volunteer to make it happen.</h2>
     <div class="who-grid">
-      <div class="who-card"><span class="who-icon">🏫</span> High school reunions</div>
+      <div class="who-card"><span class="who-icon">🏫</span> High school gatherings</div>
       <div class="who-card"><span class="who-icon">🎓</span> College &amp; university</div>
       <div class="who-card"><span class="who-icon">🔱</span> Fraternities &amp; sororities</div>
       <div class="who-card"><span class="who-icon">🌿</span> Civic organizations</div>
-      <div class="who-card"><span class="who-icon">👨‍👩‍👧</span> Family reunions</div>
+      <div class="who-card"><span class="who-icon">👨‍👩‍👧</span> Family gatherings</div>
       <div class="who-card"><span class="who-icon">✦</span> Other gatherings</div>
     </div>
   </section>
@@ -556,7 +556,7 @@
   <!-- Request form -->
   <section class="request" id="request">
     <h2>Ready to get started?</h2>
-    <p class="request-sub">Tell us about your reunion and we'll get you set up — usually within one business day.</p>
+    <p class="request-sub">Tell us about your gathering and we'll get you set up — usually within one business day.</p>
 
     <div class="form-wrap">
       <div id="form-fields">
@@ -569,7 +569,7 @@
           <input type="email" id="f-email" placeholder="sarah@email.com" autocomplete="email" />
         </div>
         <div class="field">
-          <label for="f-type">Type of reunion</label>
+          <label for="f-type">Type of gathering</label>
           <select id="f-type">
             <option value="" disabled selected>Choose one</option>
             <option value="High school">High school</option>
@@ -577,7 +577,7 @@
             <option value="Fraternity">Fraternity</option>
             <option value="Sorority">Sorority</option>
             <option value="Civic organization">Civic organization</option>
-            <option value="Family reunion">Family reunion</option>
+            <option value="Family gathering">Family gathering</option>
             <option value="Other">Other</option>
           </select>
         </div>
@@ -587,7 +587,7 @@
         </div>
         <div class="field">
           <label for="f-event">Event you're planning <span class="field-optional">optional</span></label>
-          <input type="text" id="f-event" placeholder="e.g. Class of 1986 40-year reunion" />
+          <input type="text" id="f-event" placeholder="e.g. Class of 1986 40-year gathering" />
         </div>
         <div class="field">
           <label for="f-notes">Anything else? <span class="field-optional">optional</span></label>
@@ -633,7 +633,7 @@
 
       if (!name) { alert('Please enter your name.'); return; }
       if (!email || !validateEmail(email)) { alert('Please enter a valid email address.'); return; }
-      if (!type) { alert('Please select a reunion type.'); return; }
+      if (!type) { alert('Please select a gathering type.'); return; }
       if (!org) { alert('Please enter your organization name.'); return; }
 
       btn.disabled = true;
