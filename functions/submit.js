@@ -39,6 +39,7 @@ export async function onRequestPost({ request, env }) {
     body: JSON.stringify({
       from: 'invitations@mail.getgathr.co',
       to: 'kristinseed@gmail.com',
+      reply_to: email,
       subject,
       text,
     }),
