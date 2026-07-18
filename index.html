@@ -3,436 +3,416 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gathr — Your gathering plans itself</title>
+  <title>Gathr — Bring your people together</title>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <meta property="og:title" content="Gathr — Your gathering plans itself." />
-  <meta property="og:description" content="Gathr guides you from first invite to final headcount. Built for the people who make it happen." />
+  <meta name="description" content="Gathr is a quietly powerful home for your community — member directories, events, and invitations that feel less like software and more like setting the table." />
+  <meta property="og:title" content="Gathr — Bring your people together" />
+  <meta property="og:description" content="Membership, events, and directories for the communities that matter most." />
   <meta property="og:image" content="https://planwithgather.com/og-image.png" />
   <meta property="og:url" content="https://planwithgather.com" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="description" content="Gathr is the smart gathering planner that tells you what to do and when — so nothing falls through the cracks. Built for high schools, universities, fraternities, civic organizations, and families." />
-  
+
   <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
         t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "xbqo9b0ank");
-</script>
-  
+  </script>
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "name": "Gathr",
     "url": "https://planwithgather.com",
-    "description": "Smart gathering planner for high schools, universities, fraternities, sororities, civic organizations, and families.",
+    "description": "Member directories, events, and invitations for the communities that matter most.",
     "applicationCategory": "BusinessApplication",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    }
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
   }
   </script>
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --amber:        #BA7517;
-      --amber-hover:  #9E6312;
-      --warm-white:   #FDFCFA;
-      --surface:      #F5F3EE;
-      --surface-dark: #EDE9E0;
-      --text:         #2C2C2A;
-      --muted:        #5F5E5A;
-      --border:       #E8E4DC;
-      --border-strong:#C8C4BC;
-      --serif:        Georgia, 'Times New Roman', serif;
-      --sans:         system-ui, -apple-system, sans-serif;
+      --brand:          #BA7517;
+      --brand-hover:    #9E6312;
+      --surface:        #FDFCFA;
+      --surface-2:      #F5F3EE;
+      --surface-3:      #EDE9E0;
+      --ink:            #2C2C2A;
+      --ink-muted:      #5F5E5A;
+      --border:         #E8E4DC;
+      --border-strong:  #C8C4BC;
+      --serif:          Georgia, 'Times New Roman', serif;
+      --sans:           system-ui, -apple-system, sans-serif;
+      --radius:         6px;
     }
 
     html { scroll-behavior: smooth; }
-
     body {
       font-family: var(--sans);
-      font-weight: 400;
-      color: var(--text);
-      background: var(--warm-white);
+      color: var(--ink);
+      background: var(--surface);
       font-size: 16px;
       line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
     }
-
-    h1, h2 {
+    h1, h2, h3, h4 {
       font-family: var(--serif);
       font-weight: 400;
-    }
-
-    /* ── Nav ── */
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: var(--warm-white);
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 40px;
-      height: 56px;
-    }
-
-    .nav-wordmark {
-      font-family: var(--serif);
-      font-size: 1.25rem;
-      font-weight: 400;
-      color: var(--text);
-      text-decoration: none;
       letter-spacing: -0.01em;
     }
+    a { color: inherit; text-decoration: none; }
 
-    .nav-signin {
-      font-family: var(--sans);
-      font-size: 0.875rem;
-      color: var(--muted);
-      text-decoration: none;
-    }
-    .nav-signin:hover { color: var(--text); }
-
-    /* ── Hero ── */
-    .hero {
-      background: var(--surface);
-      padding: 80px 40px;
-      text-align: center;
+    /* ── Eyebrow ── */
+    .eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
     }
 
-    .hero h1 {
-      font-size: 2rem;
-      color: var(--text);
-      margin-bottom: 20px;
-      letter-spacing: -0.01em;
-    }
-
-    .hero-sub {
-      max-width: 560px;
-      margin: 0 auto 36px;
-      color: var(--muted);
-      font-size: 1.0625rem;
-    }
-
+    /* ── Buttons ── */
     .btn-primary {
       display: inline-block;
-      background: var(--amber);
+      background: var(--brand);
       color: #fff;
       font-family: var(--sans);
       font-weight: 500;
-      font-size: 0.9375rem;
-      padding: 12px 28px;
-      border-radius: 6px;
+      font-size: 0.875rem;
+      padding: 12px 24px;
+      border-radius: var(--radius);
       border: none;
       cursor: pointer;
-      text-decoration: none;
       transition: background 0.15s;
     }
-    .btn-primary:hover { background: var(--amber-hover); }
-
-    .hero-secondary {
-      margin-top: 16px;
+    .btn-primary:hover { background: var(--brand-hover); }
+    .btn-link {
       font-size: 0.875rem;
-      color: var(--muted);
+      color: var(--ink-muted);
+      text-underline-offset: 4px;
     }
-    .hero-secondary a {
-      color: var(--amber);
-      text-decoration: none;
-    }
-    .hero-secondary a:hover { text-decoration: underline; }
+    .btn-link:hover { text-decoration: underline; }
 
-    /* ── Pain points ── */
-    .pain {
-      padding: 56px 40px;
-      background: var(--warm-white);
-    }
-
-    .pain-row {
-      display: flex;
-      gap: 40px;
-      max-width: 860px;
-      margin: 0 auto;
-    }
-
-    .pain-item {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .pain-icon {
-      font-size: 1.5rem;
-      line-height: 1;
-    }
-
-    .pain-text {
-      font-size: 0.875rem;
-      color: var(--muted);
-      line-height: 1.5;
-    }
-
-    /* ── How it works ── */
-    .how {
-      padding: 72px 40px;
-      background: var(--warm-white);
-    }
-
-    .how h2 {
-      font-size: 1.5rem;
-      text-align: center;
-      margin-bottom: 40px;
-      color: var(--text);
-    }
-
-    .how-cards {
-      display: flex;
-      gap: 24px;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .how-card {
-      flex: 1;
+    /* ── Nav ── */
+    nav.top-nav {
+      border-bottom: 1px solid var(--border);
       background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 28px 24px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
-
-    .how-step {
-      font-size: 0.8125rem;
-      font-weight: 500;
-      color: var(--amber);
-      margin-bottom: 8px;
-      letter-spacing: 0.02em;
+    .nav-inner {
+      max-width: 1152px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
-
-    .how-title {
-      font-size: 1rem;
-      font-weight: 500;
-      color: var(--text);
-      margin-bottom: 8px;
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
-
-    .how-desc {
-      font-size: 0.875rem;
-      color: var(--muted);
-      line-height: 1.6;
-    }
-
-    /* ── Who it's for ── */
-    .who {
-      padding: 72px 40px;
-      background: var(--surface);
-    }
-
-    .who h2 {
-      font-size: 1.5rem;
-      text-align: center;
-      margin-bottom: 40px;
-      color: var(--text);
-    }
-
-    .who-grid {
+    .nav-logo-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--brand);
+      color: #fff;
+      font-family: var(--serif);
+      font-size: 1.125rem;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      max-width: 760px;
-      margin: 0 auto;
+      place-items: center;
     }
-
-    .who-card {
-      background: var(--warm-white);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 20px 18px;
+    .nav-wordmark {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      font-size: 0.875rem;
+      color: var(--ink-muted);
+    }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-actions {
       display: flex;
       align-items: center;
       gap: 12px;
-      font-size: 0.9rem;
-      color: var(--text);
-      transition: border-color 0.15s;
     }
-    .who-card:hover { border-color: var(--border-strong); }
-
-    .who-icon { font-size: 1.25rem; }
-
-    /* ── Two columns ── */
-    .compare {
-      padding: 72px 40px;
-      background: var(--warm-white);
-    }
-
-    .compare h2 {
-      font-size: 1.5rem;
-      text-align: center;
-      margin-bottom: 40px;
-      color: var(--text);
-    }
-
-    .compare-cols {
-      display: flex;
-      gap: 24px;
-      max-width: 860px;
-      margin: 0 auto;
-    }
-
-    .compare-col {
-      flex: 1;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 28px 24px;
-    }
-
-    .compare-col.organizer {
-      border-left: 3px solid var(--amber);
-    }
-
-    .compare-col-heading {
-      font-size: 0.9375rem;
-      font-weight: 500;
-      color: var(--text);
-      margin-bottom: 16px;
-    }
-
-    .compare-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .compare-list li {
+    .nav-signin {
       font-size: 0.875rem;
-      color: var(--muted);
-      padding-left: 16px;
+      color: var(--ink-muted);
+    }
+    .nav-signin:hover { color: var(--ink); }
+
+    /* ── Hero ── */
+    .hero {
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-inner {
+      max-width: 1152px;
+      margin: 0 auto;
+      padding: 80px 24px;
+      display: grid;
+      gap: 48px;
+      align-items: center;
+    }
+    .hero-text { display: flex; flex-direction: column; gap: 28px; }
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 3.75rem);
+      line-height: 1.05;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--brand);
+    }
+    .hero-sub {
+      font-size: 1.125rem;
+      line-height: 1.7;
+      color: var(--ink-muted);
+      max-width: 560px;
+    }
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 16px;
+    }
+    .hero-fine {
+      font-size: 0.75rem;
+      color: var(--ink-muted);
+    }
+    .hero-image-wrap {
       position: relative;
-      line-height: 1.5;
     }
-
-    .compare-list li::before {
-      content: "—";
+    .hero-image-bg {
       position: absolute;
-      left: 0;
-      color: var(--muted);
+      inset: -12px;
+      border-radius: var(--radius);
+      background: var(--surface-2);
+      z-index: 0;
+    }
+    /* Hero image / slideshow */
+    .hero-img {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      aspect-ratio: 4/3;
+      border-radius: var(--radius);
+      object-fit: cover;
+      box-shadow: 0 30px 60px -30px rgba(44,44,42,0.35);
+      display: block;
+    }
+    /* When multiple images are loaded, the JS adds .is-slideshow and fades between them */
+    .hero-image-wrap.is-slideshow .hero-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+    .hero-image-wrap.is-slideshow {
+      aspect-ratio: 4/3;
+    }
+    .hero-image-wrap.is-slideshow .hero-img.active {
+      opacity: 1;
     }
 
-    /* ── Request form ── */
-    .request {
-      padding: 72px 40px;
-      background: var(--surface);
+    /* ── Logo strip ── */
+    .logo-strip {
+      border-bottom: 1px solid var(--border);
+      background: var(--surface-2);
+      padding: 32px 24px;
     }
-
-    .request h2 {
-      font-size: 1.5rem;
-      text-align: center;
-      margin-bottom: 12px;
-      color: var(--text);
-    }
-
-    .request-sub {
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.9375rem;
-      margin-bottom: 40px;
-      max-width: 520px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .form-wrap {
-      max-width: 520px;
+    .logo-strip-inner {
+      max-width: 1152px;
       margin: 0 auto;
     }
+    .logo-strip .eyebrow { display: block; text-align: center; margin-bottom: 20px; }
+    .logo-strip-names {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px 40px;
+      list-style: none;
+      font-family: var(--serif);
+      font-size: 1rem;
+      color: var(--ink-muted);
+    }
 
-    .field {
+    /* ── Features ── */
+    .features {
+      border-bottom: 1px solid var(--border);
+    }
+    .features-inner {
+      max-width: 1152px;
+      margin: 0 auto;
+      padding: 80px 24px;
+    }
+    .section-lead { margin-bottom: 56px; max-width: 640px; }
+    .section-lead .eyebrow { margin-bottom: 12px; display: block; }
+    .section-lead h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.1;
+    }
+    .features-grid {
+      display: grid;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .feature-cell {
+      background: var(--surface);
+      padding: 40px;
+    }
+    .feature-cell h3 {
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+    }
+    .feature-cell p { color: var(--ink-muted); line-height: 1.7; }
+
+    /* ── How it works ── */
+    .how {
+      border-bottom: 1px solid var(--border);
+      background: var(--surface-2);
+    }
+    .how-inner {
+      max-width: 1152px;
+      margin: 0 auto;
+      padding: 80px 24px;
+    }
+    .how-steps {
+      display: grid;
+      gap: 40px;
+    }
+    .how-step-num {
+      font-family: var(--serif);
+      font-size: 1.875rem;
+      color: var(--brand);
+      margin-bottom: 12px;
+    }
+    .how-step h3 { font-size: 1.5rem; margin-bottom: 8px; }
+    .how-step p { color: var(--ink-muted); line-height: 1.7; }
+
+    /* ── Pull quote ── */
+    .quote {
+      border-bottom: 1px solid var(--border);
+    }
+    .quote-inner {
+      max-width: 768px;
+      margin: 0 auto;
+      padding: 80px 24px;
+      text-align: center;
+    }
+    .quote blockquote {
+      font-family: var(--serif);
+      font-size: clamp(1.5rem, 3vw, 2.25rem);
+      line-height: 1.4;
+    }
+    .quote cite {
+      display: block;
+      margin-top: 24px;
+      font-size: 0.875rem;
+      font-style: normal;
+      color: var(--ink-muted);
+    }
+
+    /* ── CTA / Request form ── */
+    .request {
+      border-bottom: 1px solid var(--border);
+      background: var(--surface-3);
+    }
+    .request-inner {
+      max-width: 1024px;
+      margin: 0 auto;
+      padding: 80px 24px;
+      text-align: center;
+    }
+    .request-inner .eyebrow { display: block; margin-bottom: 16px; }
+    .request-inner h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.1;
       margin-bottom: 20px;
     }
+    .request-inner h2 em { font-style: italic; color: var(--brand); }
+    .request-sub {
+      color: var(--ink-muted);
+      max-width: 480px;
+      margin: 0 auto 48px;
+    }
 
+    /* form */
+    .form-wrap { max-width: 520px; margin: 0 auto; text-align: left; }
+    .field { margin-bottom: 20px; }
     .field label {
       display: block;
       font-size: 0.875rem;
       font-weight: 500;
-      color: var(--text);
+      color: var(--ink);
       margin-bottom: 6px;
     }
-
     .field input,
     .field select,
     .field textarea {
       width: 100%;
       font-family: var(--sans);
       font-size: 0.9375rem;
-      font-weight: 400;
-      color: var(--text);
-      background: var(--warm-white);
+      color: var(--ink);
+      background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 6px;
+      border-radius: var(--radius);
       padding: 10px 12px;
       outline: none;
       transition: border-color 0.15s;
       appearance: none;
       -webkit-appearance: none;
     }
-
     .field select {
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235F5E5A' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
       background-position: right 12px center;
       padding-right: 36px;
     }
-
     .field input:focus,
     .field select:focus,
-    .field textarea:focus {
-      border-color: var(--amber);
-    }
-
-    .field textarea {
-      resize: vertical;
-      min-height: 100px;
-    }
-
-    .field-optional {
-      font-weight: 400;
-      color: var(--muted);
-      font-size: 0.8125rem;
-      margin-left: 4px;
-    }
+    .field textarea:focus { border-color: var(--brand); }
+    .field textarea { resize: vertical; min-height: 100px; }
+    .field-optional { font-weight: 400; color: var(--ink-muted); font-size: 0.8125rem; margin-left: 4px; }
 
     #submit-btn {
       width: 100%;
-      background: var(--amber);
+      background: var(--brand);
       color: #fff;
       font-family: var(--sans);
       font-weight: 500;
       font-size: 0.9375rem;
       padding: 13px;
-      border-radius: 6px;
+      border-radius: var(--radius);
       border: none;
       cursor: pointer;
       transition: background 0.15s;
       margin-top: 4px;
     }
-    #submit-btn:hover:not(:disabled) { background: var(--amber-hover); }
+    #submit-btn:hover:not(:disabled) { background: var(--brand-hover); }
     #submit-btn:disabled { opacity: 0.65; cursor: not-allowed; }
 
     .form-note {
       text-align: center;
       font-size: 0.8125rem;
-      color: var(--muted);
+      color: var(--ink-muted);
       margin-top: 12px;
     }
-
+    .form-note a { color: var(--ink-muted); text-decoration: underline; }
     .form-error {
       display: none;
       color: #b91c1c;
@@ -440,254 +420,326 @@
       margin-top: 12px;
       text-align: center;
     }
-
     .form-error a { color: #b91c1c; }
-
     .form-success {
       display: none;
       text-align: center;
       padding: 48px 0;
       font-size: 1.0625rem;
-      color: var(--text);
+      color: var(--ink);
     }
 
     /* ── Footer ── */
     footer {
-      background: var(--surface-dark);
-      padding: 28px 40px;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+    }
+    .footer-inner {
+      max-width: 1152px;
+      margin: 0 auto;
+      padding: 40px 24px;
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 28px;
-      font-size: 0.875rem;
-      color: var(--muted);
+      justify-content: space-between;
       flex-wrap: wrap;
+      gap: 16px;
+      font-size: 0.875rem;
+      color: var(--ink-muted);
     }
-
-    footer a {
-      color: var(--muted);
-      text-decoration: none;
+    .footer-logo { display: flex; align-items: center; gap: 8px; }
+    .footer-logo-mark {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--brand);
+      color: #fff;
+      font-family: var(--serif);
+      font-size: 0.75rem;
+      display: grid;
+      place-items: center;
     }
-    footer a:hover { color: var(--text); }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a:hover { color: var(--ink); }
+    .footer-attr { font-size: 0.75rem; width: 100%; text-align: center; }
 
     /* ── Responsive ── */
-    @media (max-width: 768px) {
-      nav { padding: 0 20px; }
-      .hero { padding: 60px 20px; }
-      .pain { padding: 48px 20px; }
-      .pain-row { flex-direction: column; gap: 28px; }
-      .how { padding: 56px 20px; }
-      .how-cards { flex-direction: column; }
-      .who { padding: 56px 20px; }
-      .who-grid { grid-template-columns: 1fr 1fr; }
-      .compare { padding: 56px 20px; }
-      .compare-cols { flex-direction: column; }
-      .request { padding: 56px 20px; }
-      footer { padding: 24px 20px; gap: 16px; }
+    @media (min-width: 768px) {
+      .hero-inner { grid-template-columns: 1.05fr 1fr; }
+      .features-grid { grid-template-columns: 1fr 1fr; }
+      .how-steps { grid-template-columns: repeat(3, 1fr); }
     }
-
-    @media (max-width: 480px) {
-      .who-grid { grid-template-columns: 1fr; }
+    @media (max-width: 767px) {
+      .nav-links { display: none; }
+      .hero-inner { padding: 56px 24px; }
+      .hero-image-bg { display: none; }
     }
   </style>
 </head>
 <body>
 
   <!-- Nav -->
-  <nav>
-    <a href="/" class="nav-wordmark">Gathr</a>
-    <a href="https://getgathr.co/login" class="nav-signin">Sign in</a>
+  <nav class="top-nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">
+        <span class="nav-logo-mark">G</span>
+        <span class="nav-wordmark">Gathr</span>
+      </a>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#how">How it works</a>
+        <a href="#request">Pricing</a>
+      </div>
+      <div class="nav-actions">
+        <a href="https://getgathr.co/login" class="nav-signin">Sign in</a>
+        <a href="#request" class="btn-primary">Start free</a>
+      </div>
+    </div>
   </nav>
 
   <!-- Hero -->
   <section class="hero">
-    <h1>Your gathering plans itself.</h1>
-    <p class="hero-sub">Gathr guides you from first invite to final headcount — so you spend less time managing a spreadsheet and more time looking forward to the event.</p>
-    <button class="btn-primary" onclick="document.getElementById('request').scrollIntoView({ behavior: 'smooth' })">Get started — it's free</button>
-    <p class="hero-secondary">Already have an account? <a href="https://getgathr.co/login">Sign in →</a></p>
+    <div class="hero-inner">
+      <div class="hero-text">
+        <p class="eyebrow">For organizers, conveners &amp; clubs</p>
+        <h1>Bring your people <em>together.</em></h1>
+        <p class="hero-sub">Gathr is a quietly powerful home for your community — member directories, events, and invitations that feel less like software and more like setting the table.</p>
+        <div class="hero-ctas">
+          <a href="#request" class="btn-primary">Start your space — free</a>
+          <a href="#how" class="btn-link">See how it works →</a>
+        </div>
+        <p class="hero-fine">No credit card. Up to 50 members on the free plan.</p>
+      </div>
+      <div class="hero-image-wrap" id="hero-image-wrap">
+        <div class="hero-image-bg"></div>
+        <!-- Hero images live in /images/. Add more filenames to HERO_IMAGES in the script below.
+             One image = static. Multiple = auto-rotates every 5 seconds. -->
+      </div>
+    </div>
   </section>
 
-  <!-- Pain points -->
-  <section class="pain">
-    <div class="pain-row">
-      <div class="pain-item">
-        <div class="pain-icon">📋</div>
-        <p class="pain-text">Your contact list is spread across three apps.</p>
+  <!-- Logo strip -->
+  <section class="logo-strip">
+    <div class="logo-strip-inner">
+      <span class="eyebrow">Trusted by gatherings of every shape</span>
+      <ul class="logo-strip-names">
+        <li>The Field Club</li>
+        <li>Sunday Suppers</li>
+        <li>North Loop Co-op</li>
+        <li>Coastal Choir</li>
+        <li>Mercer Book Society</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features" id="features">
+    <div class="features-inner">
+      <div class="section-lead">
+        <span class="eyebrow">What's inside</span>
+        <h2>Everything a community needs. Nothing it doesn't.</h2>
       </div>
-      <div class="pain-item">
-        <div class="pain-icon">📬</div>
-        <p class="pain-text">People say "I'll let you know" and vanish.</p>
-      </div>
-      <div class="pain-item">
-        <div class="pain-icon">🤷</div>
-        <p class="pain-text">You have no idea where things actually stand.</p>
+      <div class="features-grid">
+        <div class="feature-cell">
+          <h3>A directory that breathes.</h3>
+          <p>Keep faces, roles, and stories in one place. Members update their own profiles — you stop chasing spreadsheets.</p>
+        </div>
+        <div class="feature-cell">
+          <h3>Events without the friction.</h3>
+          <p>Create an event in a minute. Send invites by email or link. RSVPs land in a clean, organizer-friendly view.</p>
+        </div>
+        <div class="feature-cell">
+          <h3>Invitations that feel personal.</h3>
+          <p>Import contacts, send branded invitations, and welcome new members with a warm onboarding — no generic forms.</p>
+        </div>
+        <div class="feature-cell">
+          <h3>Calm by design.</h3>
+          <p>An editorial interface that respects your attention. Nothing buzzes for engagement. The app stays out of the way.</p>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- How it works -->
-  <section class="how">
-    <h2>Set up in minutes. Run the whole thing from one place.</h2>
-    <div class="how-cards">
-      <div class="how-card">
-        <div class="how-step">1</div>
-        <div class="how-title">Bring your people</div>
-        <p class="how-desc">Paste your contact list or upload a CSV. Gathr creates your member list instantly.</p>
+  <section class="how" id="how">
+    <div class="how-inner">
+      <div class="section-lead">
+        <span class="eyebrow">How it works</span>
+        <h2>From empty page to first gathering in an afternoon.</h2>
       </div>
-      <div class="how-card">
-        <div class="how-step">2</div>
-        <div class="how-title">Gathr keeps track</div>
-        <p class="how-desc">RSVPs, reminders, headcount — who's in and who's still deciding. All in one place.</p>
-      </div>
-      <div class="how-card">
-        <div class="how-step">3</div>
-        <div class="how-title">Show up and celebrate</div>
-        <p class="how-desc">Your guests arrive informed. You arrive relaxed. The software did the work.</p>
-      </div>
+      <ol class="how-steps">
+        <li class="how-step">
+          <div class="how-step-num">01</div>
+          <h3>Create your space</h3>
+          <p>Name your community, pick an accent color, and you're ready in under a minute.</p>
+        </li>
+        <li class="how-step">
+          <div class="how-step-num">02</div>
+          <h3>Invite your people</h3>
+          <p>Import a list or share a link. New members onboard themselves with a guided welcome.</p>
+        </li>
+        <li class="how-step">
+          <div class="how-step-num">03</div>
+          <h3>Host your first gathering</h3>
+          <p>Spin up an event, collect RSVPs, and check folks in — all from one calm dashboard.</p>
+        </li>
+      </ol>
     </div>
   </section>
 
-  <!-- Who it's for -->
-  <section class="who">
-    <h2>Built for the people who volunteer to make it happen.</h2>
-    <div class="who-grid">
-      <div class="who-card"><span class="who-icon">🏫</span> High school gatherings</div>
-      <div class="who-card"><span class="who-icon">🎓</span> College &amp; university</div>
-      <div class="who-card"><span class="who-icon">🔱</span> Fraternities &amp; sororities</div>
-      <div class="who-card"><span class="who-icon">🌿</span> Civic organizations</div>
-      <div class="who-card"><span class="who-icon">👨‍👩‍👧</span> Family gatherings</div>
-      <div class="who-card"><span class="who-icon">✦</span> Other gatherings</div>
+  <!-- Pull quote -->
+  <section class="quote">
+    <div class="quote-inner">
+      <blockquote>"Gathr replaced three spreadsheets, a group chat, and a very tired Google Form. Our Sunday suppers have never run smoother."</blockquote>
+      <cite>— Mara L., host of Sunday Suppers</cite>
     </div>
   </section>
 
-  <!-- Organizer vs attendee -->
-  <section class="compare">
-    <h2>Good for the person running it. Easy for everyone else.</h2>
-    <div class="compare-cols">
-      <div class="compare-col organizer">
-        <div class="compare-col-heading">You stay in control.</div>
-        <ul class="compare-list">
-          <li>Import your existing contact list in seconds</li>
-          <li>One dashboard shows you exactly where things stand</li>
-          <li>Gathr tells you what needs attention and when</li>
-          <li>Members update their own RSVPs — you don't chase anyone</li>
-        </ul>
-      </div>
-      <div class="compare-col">
-        <div class="compare-col-heading">They stay in the loop.</div>
-        <ul class="compare-list">
-          <li>One-click RSVP from any device</li>
-          <li>Easy to change their mind — no awkward calls</li>
-          <li>Event details always in one place</li>
-          <li>After it's over, a shared space for photos and memories</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- Request form -->
+  <!-- Request / CTA -->
   <section class="request" id="request">
-    <h2>Ready to get started?</h2>
-    <p class="request-sub">Tell us about your gathering and we'll get you set up — usually within one business day.</p>
+    <div class="request-inner">
+      <span class="eyebrow">Start your space</span>
+      <h2>Your community is already gathering. <em>Give it a home.</em></h2>
+      <p class="request-sub">Tell us about your gathering and we'll get you set up — usually within one business day.</p>
 
-    <div class="form-wrap">
-      <div id="form-fields">
-        <div class="field">
-          <label for="f-name">Your name</label>
-          <input type="text" id="f-name" placeholder="Sarah Johnson" autocomplete="name" />
-        </div>
-        <div class="field">
-          <label for="f-email">Your email</label>
-          <input type="email" id="f-email" placeholder="sarah@email.com" autocomplete="email" />
-        </div>
-        <div class="field">
-          <label for="f-type">Type of gathering</label>
-          <select id="f-type">
-            <option value="" disabled selected>Choose one</option>
-            <option value="High school">High school</option>
-            <option value="College/university">College/university</option>
-            <option value="Fraternity">Fraternity</option>
-            <option value="Sorority">Sorority</option>
-            <option value="Civic organization">Civic organization</option>
-            <option value="Family gathering">Family gathering</option>
-            <option value="Other">Other</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="f-org">Organization name</label>
-          <input type="text" id="f-org" placeholder="e.g. Lawrenceville High School or The Kim Family" />
-        </div>
-        <div class="field">
-          <label for="f-event">Event you're planning <span class="field-optional">optional</span></label>
-          <input type="text" id="f-event" placeholder="e.g. Class of 1986 40-year gathering" />
-        </div>
-        <div class="field">
-          <label for="f-notes">Anything else? <span class="field-optional">optional</span></label>
-          <textarea id="f-notes" placeholder="Optional — max 300 chars" maxlength="300"></textarea>
-        </div>
+      <div class="form-wrap">
+        <div id="form-fields">
+          <div class="field">
+            <label for="f-name">Your name</label>
+            <input type="text" id="f-name" placeholder="Sarah Johnson" autocomplete="name" />
+          </div>
+          <div class="field">
+            <label for="f-email">Your email</label>
+            <input type="email" id="f-email" placeholder="sarah@email.com" autocomplete="email" />
+          </div>
+          <div class="field">
+            <label for="f-type">Type of gathering</label>
+            <select id="f-type">
+              <option value="" disabled selected>Choose one</option>
+              <option value="High school">High school</option>
+              <option value="College/university">College/university</option>
+              <option value="Fraternity">Fraternity</option>
+              <option value="Sorority">Sorority</option>
+              <option value="Civic organization">Civic organization</option>
+              <option value="Family gathering">Family gathering</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="f-org">Organization name</label>
+            <input type="text" id="f-org" placeholder="e.g. Lawrenceville High School or The Kim Family" />
+          </div>
+          <div class="field">
+            <label for="f-event">Event you're planning <span class="field-optional">optional</span></label>
+            <input type="text" id="f-event" placeholder="e.g. Class of 1986 40-year gathering" />
+          </div>
+          <div class="field">
+            <label for="f-notes">Anything else? <span class="field-optional">optional</span></label>
+            <textarea id="f-notes" placeholder="Optional — max 300 chars" maxlength="300"></textarea>
+          </div>
 
-        <button id="submit-btn" onclick="handleSubmit()">Request access</button>
-        <p class="form-note">We'll email you within one business day. No credit card required.</p>
-        <p class="form-note">By requesting access, you agree to our <a href="https://getgathr.co/terms">Terms of service</a> and <a href="https://getgathr.co/privacy">Privacy policy</a>.</p>
-        <p class="form-error" id="form-error">
-          Something went wrong — email us directly at <a href="mailto:hello@planwithgather.com">hello@planwithgather.com</a>
-        </p>
-      </div>
-
-      <div class="form-success" id="form-success">
-        You're on the list. Check your inbox — we'll be in touch soon.
+          <button id="submit-btn" onclick="handleSubmit()">Create your space</button>
+          <p class="form-note">We'll email you within one business day. No credit card required.</p>
+          <p class="form-note">By requesting access, you agree to our <a href="https://getgathr.co/terms">Terms of service</a> and <a href="https://getgathr.co/privacy">Privacy policy</a>.</p>
+          <p class="form-error" id="form-error">
+            Something went wrong — email us directly at <a href="mailto:hello@planwithgather.com">hello@planwithgather.com</a>
+          </p>
+        </div>
+        <div class="form-success" id="form-success">
+          You're on the list. Check your inbox — we'll be in touch soon.
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Footer -->
   <footer>
-    <span>© 2026 Gathr</span>
-    <a href="mailto:hello@planwithgather.com">hello@planwithgather.com</a>
-    <span><a href="https://getgathr.co/privacy">Privacy</a> · <a href="https://getgathr.co/terms">Terms</a></span>
-    <span>planwithgather.com is a product of KLS Consulting LLC</span>
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <span class="footer-logo-mark">G</span>
+        <span>© <span id="year"></span> Gathr</span>
+      </div>
+      <nav class="footer-links">
+        <a href="https://getgathr.co/privacy">Privacy</a>
+        <a href="https://getgathr.co/terms">Terms</a>
+        <a href="mailto:hello@planwithgather.com">Contact</a>
+      </nav>
+      <p class="footer-attr">planwithgather.com is a product of KLS Consulting LLC</p>
+    </div>
   </footer>
 
   <script>
+    // ─── Hero images ───────────────────────────────────────────────────────────
+    // Add filenames here to enable a slideshow. One entry = static image.
+    // Images must live in /images/. Recommended size: 1600×1200 px, JPG.
+    const HERO_IMAGES = [
+      "hero-1.jpg",
+      // "hero-2.jpg",
+      // "hero-3.jpg",
+    ];
+
+    (function initHero() {
+      const wrap = document.getElementById("hero-image-wrap");
+      const imgs = HERO_IMAGES.map((src, i) => {
+        const img = document.createElement("img");
+        img.src = "/images/" + src;
+        img.alt = "A gathering";
+        img.className = "hero-img" + (i === 0 ? " active" : "");
+        wrap.appendChild(img);
+        return img;
+      });
+
+      if (imgs.length > 1) {
+        wrap.classList.add("is-slideshow");
+        let current = 0;
+        setInterval(() => {
+          imgs[current].classList.remove("active");
+          current = (current + 1) % imgs.length;
+          imgs[current].classList.add("active");
+        }, 5000);
+      }
+    })();
+
+    // ─── Footer year ───────────────────────────────────────────────────────────
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // ─── Form ──────────────────────────────────────────────────────────────────
     function validateEmail(email) {
       return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
     }
 
     async function handleSubmit() {
-      const name  = document.getElementById('f-name').value.trim();
-      const email = document.getElementById('f-email').value.trim();
-      const type  = document.getElementById('f-type').value;
-      const org   = document.getElementById('f-org').value.trim();
-      const event = document.getElementById('f-event').value.trim();
-      const notes = document.getElementById('f-notes').value.trim();
-      const btn   = document.getElementById('submit-btn');
-      const errEl = document.getElementById('form-error');
+      const name  = document.getElementById("f-name").value.trim();
+      const email = document.getElementById("f-email").value.trim();
+      const type  = document.getElementById("f-type").value;
+      const org   = document.getElementById("f-org").value.trim();
+      const event = document.getElementById("f-event").value.trim();
+      const notes = document.getElementById("f-notes").value.trim();
+      const btn   = document.getElementById("submit-btn");
+      const errEl = document.getElementById("form-error");
 
-      errEl.style.display = 'none';
+      errEl.style.display = "none";
 
-      if (!name) { alert('Please enter your name.'); return; }
-      if (!email || !validateEmail(email)) { alert('Please enter a valid email address.'); return; }
-      if (!type) { alert('Please select a gathering type.'); return; }
-      if (!org) { alert('Please enter your organization name.'); return; }
+      if (!name)                        { alert("Please enter your name."); return; }
+      if (!email || !validateEmail(email)) { alert("Please enter a valid email address."); return; }
+      if (!type)                        { alert("Please select a gathering type."); return; }
+      if (!org)                         { alert("Please enter your organization name."); return; }
 
       btn.disabled = true;
-      btn.textContent = 'Sending…';
+      btn.textContent = "Sending…";
 
       try {
-        const res = await fetch('/submit', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name, email, type, org, event, notes })
+        const res = await fetch("/submit", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name, email, type, org, event, notes }),
         });
-
-        if (!res.ok) throw new Error('Non-2xx response');
-
-        document.getElementById('form-fields').style.display = 'none';
-        document.getElementById('form-success').style.display = 'block';
+        if (!res.ok) throw new Error("Non-2xx response");
+        document.getElementById("form-fields").style.display = "none";
+        document.getElementById("form-success").style.display = "block";
       } catch (e) {
         btn.disabled = false;
-        btn.textContent = 'Request access';
-        errEl.style.display = 'block';
+        btn.textContent = "Create your space";
+        errEl.style.display = "block";
       }
     }
   </script>
