@@ -226,6 +226,28 @@
       opacity: 1;
     }
 
+    /* ── Built for strip ── */
+    .logo-strip {
+      border-bottom: 1px solid var(--border);
+      background: var(--surface-2);
+      padding: 32px 24px;
+    }
+    .logo-strip-inner {
+      max-width: 1152px;
+      margin: 0 auto;
+    }
+    .logo-strip .eyebrow { display: block; text-align: center; margin-bottom: 20px; }
+    .logo-strip-names {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px 40px;
+      list-style: none;
+      font-family: var(--serif);
+      font-size: 1rem;
+      color: var(--ink-muted);
+    }
+
     /* ── Features ── */
     .features {
       border-bottom: 1px solid var(--border);
@@ -281,29 +303,6 @@
     }
     .how-step h3 { font-size: 1.5rem; margin-bottom: 8px; }
     .how-step p { color: var(--ink-muted); line-height: 1.7; }
-
-    /* ── Pull quote ── */
-    .quote {
-      border-bottom: 1px solid var(--border);
-    }
-    .quote-inner {
-      max-width: 768px;
-      margin: 0 auto;
-      padding: 80px 24px;
-      text-align: center;
-    }
-    .quote blockquote {
-      font-family: var(--serif);
-      font-size: clamp(1.5rem, 3vw, 2.25rem);
-      line-height: 1.4;
-    }
-    .quote cite {
-      display: block;
-      margin-top: 24px;
-      font-size: 0.875rem;
-      font-style: normal;
-      color: var(--ink-muted);
-    }
 
     /* ── CTA / Request form ── */
     .request {
@@ -495,6 +494,21 @@
     </div>
   </section>
 
+  <!-- Built for -->
+  <section class="logo-strip">
+    <div class="logo-strip-inner">
+      <span class="eyebrow">Built for</span>
+      <ul class="logo-strip-names">
+        <li>Family reunions</li>
+        <li>Friend groups</li>
+        <li>Civic organizations</li>
+        <li>Class reunions</li>
+        <li>Book clubs</li>
+        <li>Neighborhood associations</li>
+      </ul>
+    </div>
+  </section>
+
   <!-- Features -->
   <section class="features" id="features">
     <div class="features-inner">
@@ -547,14 +561,6 @@
           <p>Spin up an event, collect RSVPs, and check folks in — all from one calm dashboard.</p>
         </li>
       </ol>
-    </div>
-  </section>
-
-  <!-- Pull quote -->
-  <section class="quote">
-    <div class="quote-inner">
-      <blockquote>"Gathr replaced three spreadsheets, a group chat, and a very tired Google Form. Our Sunday suppers have never run smoother."</blockquote>
-      <cite>— Mara L., host of Sunday Suppers</cite>
     </div>
   </section>
 
