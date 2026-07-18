@@ -226,7 +226,7 @@
       opacity: 1;
     }
 
-    /* ── Logo strip ── */
+    /* ── Built for strip ── */
     .logo-strip {
       border-bottom: 1px solid var(--border);
       background: var(--surface-2);
@@ -304,27 +304,27 @@
     .how-step h3 { font-size: 1.5rem; margin-bottom: 8px; }
     .how-step p { color: var(--ink-muted); line-height: 1.7; }
 
-    /* ── Pull quote ── */
-    .quote {
+    /* ── Value statement ── */
+    .value-statement {
       border-bottom: 1px solid var(--border);
     }
-    .quote-inner {
+    .value-inner {
       max-width: 768px;
       margin: 0 auto;
       padding: 80px 24px;
       text-align: center;
     }
-    .quote blockquote {
+    .value-heading {
       font-family: var(--serif);
-      font-size: clamp(1.5rem, 3vw, 2.25rem);
-      line-height: 1.4;
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      line-height: 1.2;
+      color: var(--ink);
+      margin-bottom: 16px;
     }
-    .quote cite {
-      display: block;
-      margin-top: 24px;
-      font-size: 0.875rem;
-      font-style: normal;
+    .value-sub {
+      font-size: 1.0625rem;
       color: var(--ink-muted);
+      line-height: 1.7;
     }
 
     /* ── CTA / Request form ── */
@@ -517,16 +517,17 @@
     </div>
   </section>
 
-  <!-- Logo strip -->
+  <!-- Built for -->
   <section class="logo-strip">
     <div class="logo-strip-inner">
-      <span class="eyebrow">Trusted by gatherings of every shape</span>
+      <span class="eyebrow">Built for</span>
       <ul class="logo-strip-names">
-        <li>The Field Club</li>
-        <li>Sunday Suppers</li>
-        <li>North Loop Co-op</li>
-        <li>Coastal Choir</li>
-        <li>Mercer Book Society</li>
+        <li>Family reunions</li>
+        <li>Friend groups</li>
+        <li>Civic organizations</li>
+        <li>Class reunions</li>
+        <li>Book clubs</li>
+        <li>Neighborhood associations</li>
       </ul>
     </div>
   </section>
@@ -586,11 +587,11 @@
     </div>
   </section>
 
-  <!-- Pull quote -->
-  <section class="quote">
-    <div class="quote-inner">
-      <blockquote>"Gathr replaced three spreadsheets, a group chat, and a very tired Google Form. Our Sunday suppers have never run smoother."</blockquote>
-      <cite>— Mara L., host of Sunday Suppers</cite>
+  <!-- Value statement -->
+  <section class="value-statement">
+    <div class="value-inner">
+      <p class="value-heading">The best gatherings don't happen by accident.</p>
+      <p class="value-sub">They happen because someone cared enough to organize them. Gathr is built for that person.</p>
     </div>
   </section>
 
