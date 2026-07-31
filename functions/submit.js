@@ -9,23 +9,22 @@ export async function onRequestPost({ request, env }) {
     });
   }
 
-  const { name, email, type, org, event, notes } = body;
+  const { name, email, story } = body;
 
-  if (!name || !email || !type || !org) {
+  if (!name || !email || !story) {
     return new Response(JSON.stringify({ error: 'Missing required fields' }), {
       status: 400,
       headers: { 'Content-Type': 'application/json' },
     });
   }
 
-  const subject = `New Gathr request — ${org}`;
+  const subject = `New Gathr request — ${name}`;
   const text = [
     `Name: ${name}`,
     `Email: ${email}`,
-    `Gathering type: ${type}`,
-    `Org name: ${org}`,
-    `Event: ${event || 'not provided'}`,
-    `Notes: ${notes || 'none'}`,
+    ``,
+    `Their story:`,
+    story,
     ``,
     `Submitted: ${new Date().toISOString()}`,
   ].join('\n');

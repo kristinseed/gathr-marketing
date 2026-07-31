@@ -413,6 +413,39 @@
       margin-top: 12px;
     }
     .form-note a { color: var(--ink-muted); text-decoration: underline; }
+    .story-wrap {
+      position: relative;
+    }
+    .story-wrap textarea {
+      padding-right: 48px;
+      min-height: 120px;
+    }
+    .mic-btn {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--ink-muted);
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .mic-btn:hover { background: var(--surface-2); color: var(--ink); }
+    .mic-btn.recording {
+      background: var(--brand);
+      border-color: var(--brand);
+      color: #fff;
+      animation: pulse 1.2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(186,117,23,0.4); }
+      50%       { box-shadow: 0 0 0 6px rgba(186,117,23,0); }
+    }
     .form-error {
       display: none;
       color: #b91c1c;
@@ -599,7 +632,7 @@
     <div class="request-inner">
       <span class="eyebrow">Start your space</span>
       <h2>Your community is already gathering. <em>Give it a home.</em></h2>
-      <p class="request-sub">Fill out the form below and we'll email you within one business day — then you're ready to invite your first members.</p>
+      <p class="request-sub">Tell us about your group — we'll email you within one business day.<br>Then you're ready to invite your first members.</p>
 
       <div class="form-wrap">
         <div id="form-fields">
@@ -612,32 +645,21 @@
             <input type="email" id="f-email" placeholder="sarah@email.com" autocomplete="email" />
           </div>
           <div class="field">
-            <label for="f-type">Type of gathering</label>
-            <select id="f-type">
-              <option value="" disabled selected>Choose one</option>
-              <option value="High school">High school</option>
-              <option value="College/university">College/university</option>
-              <option value="Fraternity">Fraternity</option>
-              <option value="Sorority">Sorority</option>
-              <option value="Civic organization">Civic organization</option>
-              <option value="Family gathering">Family gathering</option>
-              <option value="Other">Other</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="f-org">Organization name</label>
-            <input type="text" id="f-org" placeholder="e.g. Lawrenceville High School or The Kim Family" />
-          </div>
-          <div class="field">
-            <label for="f-event">Event you're planning <span class="field-optional">optional</span></label>
-            <input type="text" id="f-event" placeholder="e.g. Class of 1986 40-year gathering" />
-          </div>
-          <div class="field">
-            <label for="f-notes">Anything else? <span class="field-optional">optional</span></label>
-            <textarea id="f-notes" placeholder="Optional — max 300 chars" maxlength="300"></textarea>
+            <label for="f-story">Tell us about your group and what you're planning</label>
+            <div class="story-wrap">
+              <textarea id="f-story" placeholder="e.g. I'm planning a class reunion for about 60 people — we need RSVPs and one place to keep everyone's contact info."></textarea>
+              <button type="button" id="mic-btn" class="mic-btn" aria-label="Speak your answer">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                  <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                  <line x1="12" y1="19" x2="12" y2="23"/>
+                  <line x1="8" y1="23" x2="16" y2="23"/>
+                </svg>
+              </button>
+            </div>
           </div>
 
-          <button id="submit-btn" onclick="handleSubmit()">Create your space</button>
+          <button id="submit-btn" onclick="handleSubmit()">Start your space — free</button>
           <p class="form-note">You'll get a setup email within one business day — then you're ready to go. No credit card required.</p>
           <p class="form-note">By requesting access, you agree to our <a href="https://getgathr.co/terms">Terms of service</a> and <a href="https://getgathr.co/privacy">Privacy policy</a>.</p>
           <p class="form-error" id="form-error">
@@ -704,6 +726,32 @@
     // ─── Footer year ───────────────────────────────────────────────────────────
     document.getElementById("year").textContent = new Date().getFullYear();
 
+    // ─── Mic / Speech Recognition ──────────────────────────────────────────────
+    (function initMic() {
+      const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+      const micBtn = document.getElementById("mic-btn");
+      if (!SpeechRec || !micBtn) { if (micBtn) micBtn.style.display = "none"; return; }
+
+      const rec = new SpeechRec();
+      rec.continuous = false;
+      rec.interimResults = false;
+      let recording = false;
+
+      micBtn.addEventListener("click", () => {
+        if (recording) { rec.stop(); return; }
+        rec.start();
+      });
+
+      rec.onstart = () => { recording = true;  micBtn.classList.add("recording"); };
+      rec.onend   = () => { recording = false; micBtn.classList.remove("recording"); };
+      rec.onresult = (e) => {
+        const ta = document.getElementById("f-story");
+        const transcript = e.results[0][0].transcript;
+        ta.value = ta.value ? ta.value + " " + transcript : transcript;
+      };
+      rec.onerror = () => { recording = false; micBtn.classList.remove("recording"); };
+    })();
+
     // ─── Form ──────────────────────────────────────────────────────────────────
     function validateEmail(email) {
       return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
@@ -712,19 +760,15 @@
     async function handleSubmit() {
       const name  = document.getElementById("f-name").value.trim();
       const email = document.getElementById("f-email").value.trim();
-      const type  = document.getElementById("f-type").value;
-      const org   = document.getElementById("f-org").value.trim();
-      const event = document.getElementById("f-event").value.trim();
-      const notes = document.getElementById("f-notes").value.trim();
+      const story = document.getElementById("f-story").value.trim();
       const btn   = document.getElementById("submit-btn");
       const errEl = document.getElementById("form-error");
 
       errEl.style.display = "none";
 
-      if (!name)                        { alert("Please enter your name."); return; }
+      if (!name)                           { alert("Please enter your name."); return; }
       if (!email || !validateEmail(email)) { alert("Please enter a valid email address."); return; }
-      if (!type)                        { alert("Please select a gathering type."); return; }
-      if (!org)                         { alert("Please enter your organization name."); return; }
+      if (!story)                          { alert("Tell us a bit about your group."); return; }
 
       btn.disabled = true;
       btn.textContent = "Sending…";
@@ -733,14 +777,14 @@
         const res = await fetch("/submit", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ name, email, type, org, event, notes }),
+          body: JSON.stringify({ name, email, story }),
         });
         if (!res.ok) throw new Error("Non-2xx response");
         document.getElementById("form-fields").style.display = "none";
         document.getElementById("form-success").style.display = "block";
       } catch (e) {
         btn.disabled = false;
-        btn.textContent = "Create your space";
+        btn.textContent = "Start your space — free";
         errEl.style.display = "block";
       }
     }
