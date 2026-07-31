@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What Gathr does</title>
+<style>
+  :root {
+    --accent:        #BA7517;
+    --accent-light:  #F5E6C8;
+    --bg:            #FDFCFA;
+    --bg-2:          #F5F3EE;
+    --bg-3:          #EDE9E0;
+    --text:          #2C2C2A;
+    --text-muted:    #5F5E5A;
+    --border:        #E8E4DC;
+    --border-strong: #C8C4BC;
+    --success:       #2D6A4F;
+    --heading-font:  Georgia, 'Times New Roman', serif;
+    --body-font:     system-ui, -apple-system, sans-serif;
+    --radius:        6px;
+    --radius-lg:     12px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --accent:        #D48920;
+      --accent-light:  #2E2208;
+      --bg:            #181612;
+      --bg-2:          #201E19;
+      --bg-3:          #2A2720;
+      --text:          #EDE9E0;
+      --text-muted:    #968F85;
+      --border:        #302C24;
+      --border-strong: #45403A;
+      --success:       #3A8A65;
+    }
+  }
+
+  :root[data-theme="light"] {
+    --accent:        #BA7517;
+    --accent-light:  #F5E6C8;
+    --bg:            #FDFCFA;
+    --bg-2:          #F5F3EE;
+    --bg-3:          #EDE9E0;
+    --text:          #2C2C2A;
+    --text-muted:    #5F5E5A;
+    --border:        #E8E4DC;
+    --border-strong: #C8C4BC;
+    --success:       #2D6A4F;
+  }
+
+  :root[data-theme="dark"] {
+    --accent:        #D48920;
+    --accent-light:  #2E2208;
+    --bg:            #181612;
+    --bg-2:          #201E19;
+    --bg-3:          #2A2720;
+    --text:          #EDE9E0;
+    --text-muted:    #968F85;
+    --border:        #302C24;
+    --border-strong: #45403A;
+    --success:       #3A8A65;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--body-font);
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    padding: 72px 24px 64px;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--heading-font);
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 18px;
+  }
+
+  .hero h1 {
+    font-family: var(--heading-font);
+    font-size: clamp(2.2rem, 6vw, 3.4rem);
+    font-weight: normal;
+    line-height: 1.08;
+    text-wrap: balance;
+    color: var(--text);
+    margin-bottom: 24px;
+    max-width: 14ch;
+  }
+
+  .hero-sub {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--text-muted);
+    max-width: 52ch;
+    margin-bottom: 0;
+  }
+
+  /* ── The mess ── */
+  .mess-section {
+    background: var(--bg-2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 56px 24px;
+  }
+
+  .mess-inner {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+  }
+
+  .mess-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+    margin-bottom: 32px;
+  }
+
+  .mess-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+  }
+
+  .mess-card-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .mess-card-desc {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    line-height: 1.45;
+  }
+
+  .mess-bridge {
+    font-family: var(--heading-font);
+    font-size: 1.25rem;
+    font-weight: normal;
+    color: var(--text);
+    line-height: 1.45;
+    max-width: 50ch;
+    text-wrap: balance;
+    border-left: 2px solid var(--accent);
+    padding-left: 20px;
+  }
+
+  /* ── How it works ── */
+  .how-section {
+    padding: 64px 24px;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .how-section h2 {
+    font-family: var(--heading-font);
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-weight: normal;
+    line-height: 1.2;
+    color: var(--text);
+    text-wrap: balance;
+    margin-bottom: 10px;
+  }
+
+  .how-section .section-intro {
+    font-size: 15px;
+    color: var(--text-muted);
+    max-width: 54ch;
+    margin-bottom: 40px;
+  }
+
+  .how-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  .step {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 0;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+  }
+
+  .step:last-child { border-bottom: none; }
+
+  .step-num {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 20px 0 20px;
+    font-family: var(--heading-font);
+    font-size: 13px;
+    color: var(--accent);
+    border-right: 1px solid var(--border);
+  }
+
+  .step-body {
+    padding: 18px 22px;
+  }
+
+  .step-title {
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .step-desc {
+    font-size: 13.5px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* ── Guidance section ── */
+  .guidance-section {
+    background: var(--bg-2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 64px 24px;
+  }
+
+  .guidance-inner {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .guidance-inner h2 {
+    font-family: var(--heading-font);
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-weight: normal;
+    color: var(--text);
+    text-wrap: balance;
+    margin-bottom: 10px;
+  }
+
+  .guidance-inner .section-intro {
+    font-size: 15px;
+    color: var(--text-muted);
+    max-width: 54ch;
+    margin-bottom: 36px;
+  }
+
+  .guidance-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    max-width: 540px;
+  }
+
+  .guidance-card-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .event-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .event-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .event-date {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-left: auto;
+  }
+
+  .guidance-examples {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .guidance-item {
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .guidance-item:last-child { border-bottom: none; }
+
+  .guidance-text {
+    font-size: 13.5px;
+    color: var(--text-muted);
+    line-height: 1.45;
+    flex: 1;
+  }
+
+  .guidance-text strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .guidance-cta {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent);
+    white-space: nowrap;
+    padding: 5px 12px;
+    border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+    border-radius: 100px;
+    background: color-mix(in srgb, var(--accent) 8%, var(--bg));
+    flex-shrink: 0;
+  }
+
+  .guidance-caption {
+    margin-top: 20px;
+    font-size: 13px;
+    color: var(--text-muted);
+    max-width: 50ch;
+    line-height: 1.5;
+  }
+
+  /* ── Toolkit section ── */
+  .toolkit-section {
+    padding: 64px 24px 80px;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .toolkit-section h2 {
+    font-family: var(--heading-font);
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-weight: normal;
+    color: var(--text);
+    text-wrap: balance;
+    margin-bottom: 10px;
+  }
+
+  .toolkit-section .section-intro {
+    font-size: 15px;
+    color: var(--text-muted);
+    max-width: 54ch;
+    margin-bottom: 40px;
+  }
+
+  .toolkit-group {
+    margin-bottom: 40px;
+  }
+
+  .toolkit-group-label {
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 16px;
+  }
+
+  .toolkit-items {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .toolkit-item {
+    display: grid;
+    grid-template-columns: 20px 1fr;
+    gap: 12px;
+    align-items: start;
+  }
+
+  .check {
+    color: var(--success);
+    font-size: 14px;
+    padding-top: 1px;
+  }
+
+  .toolkit-item-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+
+  .toolkit-item-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .divider {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .divider hr {
+    border: none;
+    border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 520px) {
+    .mess-grid { grid-template-columns: 1fr 1fr; }
+    .guidance-item { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .step { grid-template-columns: 36px 1fr; }
+  }
+
+  @media (max-width: 380px) {
+    .mess-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- PITCH — for organizers who haven't signed up yet -->
+
+<div class="hero">
+  <p class="hero-eyebrow">Gathr for organizers</p>
+  <h1>The reunion that actually comes together.</h1>
+  <p class="hero-sub">Most group events don't fail because nobody wants to come. They fall apart because one person is managing an evite, a reply-all thread, a Google Form, and a spreadsheet — at midnight, alone. Gathr is the system that handles that work for you.</p>
+</div>
+
+<div class="mess-section">
+  <div class="mess-inner">
+    <p class="section-label">The stack you're replacing</p>
+    <div class="mess-grid">
+      <div class="mess-card">
+        <p class="mess-card-title">An evite nobody updates</p>
+        <p class="mess-card-desc">Nobody checks it after they RSVP. The guest list is wrong. You can't tell who's actually coming.</p>
+      </div>
+      <div class="mess-card">
+        <p class="mess-card-title">A reply-all thread</p>
+        <p class="mess-card-desc">Started well-intentioned. Now it's 94 emails and three people keep responding to everyone.</p>
+      </div>
+      <div class="mess-card">
+        <p class="mess-card-title">A Google Form</p>
+        <p class="mess-card-desc">Responses live in a spreadsheet you have to keep checking. Three tabs. Manual tallying.</p>
+      </div>
+      <div class="mess-card">
+        <p class="mess-card-title">Your own memory</p>
+        <p class="mess-card-desc">Because someone has to remember who hasn't responded, who needs a reminder, and when to send the recap.</p>
+      </div>
+    </div>
+    <p class="mess-bridge">Gathr replaces that whole stack — not just with better tools, but with a system that reads the situation and tells you what to do next.</p>
+  </div>
+</div>
+
+<div class="how-section">
+  <p class="section-label">How it works</p>
+  <h2>From "I should plan this" to "it's handled."</h2>
+  <p class="section-intro">You set the event up. Gathr figures out what needs to happen next and puts the right action in front of you.</p>
+
+  <div class="how-steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <p class="step-title">Create your event and build your list</p>
+        <p class="step-desc">Add the basics — date, location, what it is. Paste in your email list or drop a file. Gathr adds everyone to your roster and gets ready to send.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <p class="step-title">Invitations go out — with a link that actually works</p>
+        <p class="step-desc">Each person gets a personalized email with a one-click login. No password, no account creation. They click, they're in, they can RSVP in 10 seconds.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <p class="step-title">Gathr watches the RSVPs and tells you when to act</p>
+        <p class="step-desc">When responses are coming in, you'll know. When things slow down and a nudge is overdue, Gathr surfaces that too — with a suggested reminder ready to send.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <p class="step-title">Day before, the reminder goes out automatically</p>
+        <p class="step-desc">Confirmed attendees get "see you tomorrow." Anyone still undecided gets a last-chance ask. You don't have to remember to send either one.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">5</div>
+      <div class="step-body">
+        <p class="step-title">After it ends, send the recap in two minutes</p>
+        <p class="step-desc">Write what you want to say. Gathr sends it to everyone who came, keeps a record, and closes the loop — so the event doesn't just disappear.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="guidance-section">
+  <div class="guidance-inner">
+    <p class="section-label">The next-step engine</p>
+    <h2>You don't have to figure out what to do next.</h2>
+    <p class="section-intro">Gathr reads where your event stands — how far out it is, how many people have responded, when you last reached out — and surfaces the one thing worth doing right now.</p>
+
+    <div class="guidance-card">
+      <div class="guidance-card-header">
+        <div class="event-dot"></div>
+        <span class="event-name">Lawrenceville Class Reunion</span>
+        <span class="event-date">Sep 20</span>
+      </div>
+      <div class="guidance-examples">
+        <div class="guidance-item">
+          <p class="guidance-text"><strong>12 people on your roster haven't been invited yet.</strong> With 6 weeks to go, this is the moment to reach them.</p>
+          <span class="guidance-cta">Send invitations</span>
+        </div>
+        <div class="guidance-item">
+          <p class="guidance-text"><strong>34 people still haven't responded.</strong> It's been two weeks since your last email — a reminder now is exactly right.</p>
+          <span class="guidance-cta">Send reminder</span>
+        </div>
+        <div class="guidance-item">
+          <p class="guidance-text"><strong>Your event wrapped up yesterday.</strong> A recap keeps the feeling going and sets up the next one.</p>
+          <span class="guidance-cta">Write recap</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="guidance-caption">When nothing needs your attention, Gathr says so. Silence is a feature — it means you're covered.</p>
+  </div>
+</div>
+
+
+<!-- TOOLKIT — for organizers already using Gathr -->
+
+<div class="toolkit-section">
+  <p class="section-label">Your complete toolkit</p>
+  <h2>Everything that's in Gathr right now.</h2>
+  <p class="section-intro">A full reference for organizers in the beta.</p>
+
+  <div class="toolkit-group">
+    <p class="toolkit-group-label">Getting people in</p>
+    <div class="toolkit-items">
+      <div class="toolkit-item">
+        <span class="check">✓</span>
+        <div class="toolkit-item-body">
+          <p class="toolkit-item-name">Email import</p>
+          <p class="toolkit-item-desc">Paste or drop a list of email addresses. Gathr builds your roster and queues up invitations.</p>
+        </div>
+      </div>
+      <div class="toolkit-item">
+        <span class="check">✓</span>
+        <div class="toolkit-item-body">
+          <p class="toolkit-item-name">Share link</p>
+          <p class="toolkit-item-desc">A link you can post anywhere — a Facebook group, a text thread, an email. Anyone who clicks can request to join. People already on your roster get fast-tracked straight to their dashboard.</p>
+        </div>
+      </div>
+      <div class="toolkit-item">
+        <span class="check">✓</span>
+        <div class="toolkit-item-body">
+          <p class="toolkit-item-name">Approval flow</p>
+          <p class="toolkit-item-desc">New join requests come to you for approval. One click to let someone in; they get a welcome email with their login link the moment you approve.</p>
+        </div>
+      </div>
+      <div class="toolkit-item">
+        <span class="check">✓</span>
+        <div class="toolkit-item-body">
+          <p class="toolkit-item-name">One-click login for members</p>
+          <p class="toolkit-item-desc">No passwords, no accounts to create. Members click a link in their email and they're in. Works on every device, adds to home screen on iOS and Android.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toolkit-group">
+    <p class="toolkit-group-label">Emails Gathr sends for you</p>
+    <div class="toolkit-items">
+      <div class="toolkit-item">
+        <span class="check">✓</span>
+        <div class="toolkit-item-body">
+          <p class="toolkit-item-name">Invitation email</p>
+          <p class="toolkit-item-desc">Personalized, with a one-click login link. Includes a prompt to add Gathr to their home screen so they don't lose the link.</p>
+        </div>
+      </div>
+      <div class="toolkit-item">
+        <span class="check">✓</span>
+        <div class="toolkit-item-body">
+          <p class="toolkit-item-name">Publish notification</p>
+          <p class="toolkit-item-desc">When your event goes from teaser to live, all active members get notified that RSVPs are open.</p>
+        </div>
+      </div>
+      <div class="toolkit-item">
+        <span class="check">✓</span>
+        <div class="toolkit-item-body">
+          <p class="toolkit-item-name">Manual reminder</p>
+          <p class="toolkit-item-desc">Send from the dashboard whenever you want. Confirmed attendees get "see you soon." Anyone still undecided gets "RSVPs are still open." People who declined don't get either.</p>
+        </div>
+      </div>
+      <div class="toolkit-item">
+        <span class="check">✓</span>
+        <div class="toolkit-item-body">
+          <p class="toolkit-item-name">Day-before reminder</p>
+          <p class="toolkit-item-desc">Sends automatically the day before your event. Two variants based on each person's RSVP status. You don't have to do anything.</p>
+        </div>
+      </div>
+      <div class="toolkit-item">
+        <span class="check">✓</span>
+        <div class="toolkit-item-body">
+          <p class="toolkit-item-name">Post-event recap</p>
+          <p class="toolkit-item-desc">Write what you want to say, Gathr sends it to everyone. Closes the loop and gives people something to hold onto after it ends.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toolkit-group">
+    <p class="toolkit-group-label">Tracking and management</p>
+    <div class="toolkit-items">
+      <div class="toolkit-item">
+        <span class="check">✓</span>
+        <div class="toolkit-item-body">
+          <p class="toolkit-item-name">RSVP dashboard</p>
+          <p class="toolkit-item-desc">See who's confirmed, who's declined, and who hasn't responded — always up to date, no spreadsheet required.</p>
+        </div>
+      </div>
+      <div class="toolkit-item">
+        <span class="check">✓</span>
+        <div class="toolkit-item-body">
+          <p class="toolkit-item-name">Declined list</p>
+          <p class="toolkit-item-desc">Know who said no and why — visible from the event card so you're never surprised by headcount.</p>
+        </div>
+      </div>
+      <div class="toolkit-item">
+        <span class="check">✓</span>
+        <div class="toolkit-item-body">
+          <p class="toolkit-item-name">Session management</p>
+          <p class="toolkit-item-desc">Break your event into multiple sessions — dinner Friday, activities Saturday. Members RSVP to each one separately.</p>
+        </div>
+      </div>
+      <div class="toolkit-item">
+        <span class="check">✓</span>
+        <div class="toolkit-item-body">
+          <p class="toolkit-item-name">Notification bell</p>
+          <p class="toolkit-item-desc">In-app alerts when something needs your attention. Dismissible. Links straight to the action.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toolkit-group">
+    <p class="toolkit-group-label">Coming soon</p>
+    <div class="toolkit-items">
+      <div class="toolkit-item">
+        <span class="check" style="color: var(--text-muted)">○</span>
+        <div class="toolkit-item-body">
+          <p class="toolkit-item-name">SMS reminders</p>
+          <p class="toolkit-item-desc">Members who opt in will get text reminders in addition to email. The logic is built — pending carrier registration.</p>
+        </div>
+      </div>
+      <div class="toolkit-item">
+        <span class="check" style="color: var(--text-muted)">○</span>
+        <div class="toolkit-item-body">
+          <p class="toolkit-item-name">Payments</p>
+          <p class="toolkit-item-desc">Collect fees directly through Gathr — ticket prices, activity costs, whatever the event needs.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
