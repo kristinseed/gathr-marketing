@@ -9,7 +9,7 @@ export async function onRequestPost({ request, env }) {
     });
   }
 
-  const { name, email, story } = body;
+  const { name, email, story, smsConsent } = body;
 
   if (!name || !email || !story) {
     return new Response(JSON.stringify({ error: 'Missing required fields' }), {
@@ -26,6 +26,7 @@ export async function onRequestPost({ request, env }) {
     `Their story:`,
     story,
     ``,
+    `SMS consent: ${smsConsent ? 'Yes' : 'No'}`,
     `Submitted: ${new Date().toISOString()}`,
   ].join('\n');
 
